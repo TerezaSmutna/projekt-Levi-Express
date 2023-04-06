@@ -3,15 +3,24 @@ import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { Home } from '../Home';
 import  Reservation  from '../Reservation';
-import { Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 export const App = () => (
   <>
     <Header />
-    <Routes>
-      <Route path="/" element={< Home />} />
-      <Route path="/reservation" element={< Reservation />} />
-    </Routes>
+    <RouterProvider router={router} />
     <Footer />
   </>
 );
+
+
+const router = createBrowserRouter([
+  {
+    path: '/', 
+    element: <Home />
+  },
+  {
+    path: '/reservation',
+    element: <Reservation />
+  }
+])
