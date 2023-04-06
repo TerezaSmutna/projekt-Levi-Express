@@ -7,38 +7,49 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
   const [date, setDate] = useState('');
+  const [cities, setCities] = useState([]);
 
   const handleSubmit = (event) => {
     console.log(fromCity, toCity, date);
     event.preventDefault();
   }
 
+  useEffect(() => {
+    fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
+      .then((response) => response.json())
+      .then((data) => setCities(data.results))
+  }, []);
+
 
 return (
   <div className="journey-picker container">
     <h2 className="journey-picker__head">Kam chcete jet?</h2>
     <div className="journey-picker__body">
-      <form onSubmit={handleSubmit} className="journey-picker__form">
+      <form onSubmit={handleSubmit}   className="journey-picker__form">
         <label>
           <div className="journey-picker__label">Odkud:</div>
           <select value={fromCity} onChange={(e) => setFromCity(e.target.value)}>
             <option value="">Vyberte</option>
-            <option value="mesto01">Město 01</option>
-            <option value="mesto02">Město 02</option>
-            <option value="mesto03">Město 03</option>
-            <option value="mesto04">Město 04</option>
-            <option value="mesto05">Město 05</option>
+            {cities.map((city) => (
+                <CityOptions
+                  name={city.name}
+                  code={city.code}
+                  key={city.code}
+                />
+              ))}
           </select>
         </label>
         <label>
           <div className="journey-picker__label">Kam:</div>
           <select value={toCity} onChange={(e) => setToCity(e.target.value)}>
             <option value="">Vyberte</option>
-            <option value="mesto01">Město 01</option>
-            <option value="mesto02">Město 02</option>
-            <option value="mesto03">Město 03</option>
-            <option value="mesto04">Město 04</option>
-            <option value="mesto05">Město 05</option>
+            {cities.map((city) => (
+                <CityOptions
+                  name={city.name}
+                  code={city.code}
+                  key={city.code}
+                />
+              ))}
           </select>
         </label>
         <label>
@@ -66,3 +77,14 @@ return (
   </div>
   );
 };
+
+const CityOptions = ({ name, code }) => {
+
+  return (
+    <>
+      <option value={code}>{name}</option>
+    </>
+  );
+};
+
+
