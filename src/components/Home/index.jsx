@@ -41,7 +41,7 @@ export const Home = () => {
         onJourneyChange={handleJourneyChange}
       />
       {journey && <JourneyDetail journey={journey} />}
-      {journey && <SeatPicker />}
+      {journey && <SeatPicker seats={journey.seats} journeyId={journey.journeyId}/>}
       <div className="controls container">
         <button onClick={handleBuy} className="btn btn--big" type="button">Rezervovat</button>
       </div>
