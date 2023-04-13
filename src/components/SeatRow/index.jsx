@@ -1,7 +1,7 @@
 import React from 'react';
 import Seat from '../Seat';
 
-const SeatRow = ({ row }) => {
+const SeatRow = ({ row, rowSelectedSeat }) => {
 
   const testRow = [
     {
@@ -24,6 +24,7 @@ const SeatRow = ({ row }) => {
         <Seat 
           number={row.number}
           isOccupied={row.isOccupied}
+          isSelected={row.number === rowSelectedSeat ? true : false}
           key={row.number}
         /> 
       ))} 

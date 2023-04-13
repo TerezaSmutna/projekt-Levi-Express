@@ -2,7 +2,7 @@ import React from 'react';
 import SeatRow from '../SeatRow';
 import './style.css';
 
-const SeatPicker = ({ seats, journeyId }) => {
+const SeatPicker = ({ seats, journeyId, selectedSeat }) => {
   return (
     <div className="seat-picker container">
       <h2>Vyberte sedadlo</h2>
@@ -11,6 +11,7 @@ const SeatPicker = ({ seats, journeyId }) => {
           <SeatRow 
             row={row}
             key={index}
+            rowSelectedSeat={selectedSeat}
           />
         ))}
       </div>
