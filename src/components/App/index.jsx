@@ -17,10 +17,16 @@ export const App = () => (
 const router = createBrowserRouter([
   {
     path: '/', 
-    element: <Home />
+    element: <Home /> 
   },
   {
     path: '/reservation',
-    element: <Reservation />
+    element: <Reservation />,
+    children: [
+      {
+        path: "/reservation/:id",
+        element: <Reservation />,
+      },
+    ]
   }
 ])
