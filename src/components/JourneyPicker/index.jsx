@@ -14,7 +14,9 @@ export const JourneyPicker = ({ onJourneyChange }) => {
     fetch(`https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`)
       .then((response) => response.json())
       .then((data) => onJourneyChange(data.results))
-
+    if (fromCity === toCity) {
+      alert("Místo odjezdu a místo příjezdu se musí lišit.")
+    }
     event.preventDefault();
   }
 
